@@ -4,34 +4,33 @@ import SaleableCloth from "./SaleableCloth"
 import DelayingCircularLoader from "../../../../shared/components/DelayingCircularLoader"
 import WaitClothesIcon from "../../../../assets/icons/wait_clothes_icon.png"
 
-// Defining the TS type for every property passed as props.
 type Props = {
-    drizzle: any, // Drizzle initialized instance.
+    drizzle: any,
     userAccountAddress: string,
+    isCustomer: boolean,
     clothTypeFilter: number,
-    clothSizeFilter: number,
-    isCustomer: boolean
+    clothSizeFilter: number
 }
 
-// Handles a filterable list of projects.
+/**
+ * Show the clothing currently on sale. Automatically update when new cloth is available in the shop.
+ */
 function SaleableClothesTable ({ drizzle, userAccountAddress, clothTypeFilter, clothSizeFilter, isCustomer }: Props) {
-    const [dataKey, setDataKey] = useState("") // Drizzle cacheCall method data key.
-    const [saleableClothesIds, setSaleableClothesIds] = useState([]) //
+    const [dataKey, setDataKey] = useState<string>() // Data key from Drizzle cacheCall method.
+    const [saleableClothesIds, setSaleableClothesIds] = useState<number[]>() // Identifiers of the available clothes for sale.
 
-    const drizzleState = drizzle.store.getState() // Get an updated copy of drizzle state.
-    const cachedMethod = drizzleState.contracts.ReclothesShop.getAllSaleableClothesIds[dataKey]
-    const saleableClothesComponents: any = [] // It will contain the list of Project components to display.
+    const drizzleState = drizzle.store.getState() // Updated copy of the Drizzle state.
+    const cachedMethod = drizzleState.contracts.ReclothesShop.getAllSaleableClothesIds[dataKey] // Declare this call to be cached and synchronized.
+    const saleableClothesComponents: any = [] // List of SaleableCloth components to display.
 
-    // Get data key from the cacheCall() to observe the project changes.
+    // Set the dataKey to retrieve data from the cached method on the Drizzle store.
     useEffect(() => {
         setDataKey(drizzle.contracts.ReclothesShop.methods.getAllSaleableClothesIds.cacheCall())
-        // eslint-disable-next-line
     }, [])
 
-    // When the cacheCall() observed method updates, lets write the new data here.
+    // Store the updates for the observed cached method.
     useEffect(() => {
         setSaleableClothesIds(dataKey ? drizzleState.contracts.ReclothesShop.getAllSaleableClothesIds[dataKey].value : [])
-        // eslint-disable-next-line
     }, [cachedMethod])
 
     return (
@@ -46,18 +45,19 @@ function SaleableClothesTable ({ drizzle, userAccountAddress, clothTypeFilter, c
                             saleableClothesIds.forEach((id: number) => {
                                 saleableClothesComponents.push(
                                     <SaleableCloth
-                                        key={id}
-                                        saleableClothId={id}
                                         drizzle={drizzle}
                                         userAccountAddress={userAccountAddress}
+                                        isCustomer={isCustomer}
                                         clothTypeFilter={clothTypeFilter}
                                         clothSizeFilter={clothSizeFilter}
-                                        isCustomer={isCustomer}
+                                        saleableClothId={id}
+                                        key={id}
                                     />
                                 )
                             })
                         }
                         {(saleableClothesComponents.length > 0) && saleableClothesComponents}
+                        {/* When no clothes are available. */}
                         {(saleableClothesComponents.length === 0) &&
                             <Grid item style={{ marginTop: "10vh" }}>
                                 <Typography color="inherit" align="center" noWrap>

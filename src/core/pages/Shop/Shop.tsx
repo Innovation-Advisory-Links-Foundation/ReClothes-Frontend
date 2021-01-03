@@ -4,25 +4,37 @@ import Footer from "../../components/Footer"
 import CustomerBar from "./components/CustomerBar"
 import CircularLoader from "../../../shared/components/CircularLoader"
 
-function Shop (props: any) {
+type Props = {
+    drizzle: any, // Initialized Drizzle instance.
+    isAppEnabled: boolean,
+    isNetworkCorrect: boolean,
+    userAccountAddress: string,
+    isCustomer: boolean 
+}
+
+/**
+ * Show the shop page. A user can register as a Customer and subsequently purchase one or more clothes using RSC tokens.
+ */
+function Shop ({ drizzle, isAppEnabled, isNetworkCorrect, userAccountAddress, isCustomer }: Props) {
     return (
         <div style={{ width: "100vw" }}>
-            {(!props.isAppEnabled || !props.isNetworkCorrect) &&
+            {/* Shows a loader when the app is not connected to the account or the network is wrong. */}
+            {(!isAppEnabled || !isNetworkCorrect) &&
                 <div style={{ marginTop: "70px" }}>
                     <CircularLoader />
                 </div>
             }
-            {(props.isAppEnabled && props.isNetworkCorrect) &&
+            {(isAppEnabled && isNetworkCorrect) &&
                 <div style={{ marginTop: "70px" }}>
                     <CustomerBar
-                        userAccountAddress={props.userAccountAddress}
-                        drizzle={props.drizzle}
-                        isCustomer={props.isCustomer}
+                        drizzle={drizzle}
+                        userAccountAddress={userAccountAddress}
+                        isCustomer={isCustomer}
                     />
                     <FilterableClothesList
-                        drizzle={props.drizzle}
-                        userAccountAddress={props.userAccountAddress}
-                        isCustomer={props.isCustomer}
+                        drizzle={drizzle}
+                        userAccountAddress={userAccountAddress}
+                        isCustomer={isCustomer}
                     />
                 </div>
             }

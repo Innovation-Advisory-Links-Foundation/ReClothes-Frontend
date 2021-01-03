@@ -74,7 +74,6 @@ function Main ({ drizzle }: Props ) {
                     <Route path="/shop" exact render={(props) =>
                         <Shop
                             drizzle={drizzle}
-                            provider={provider}
                             isAppEnabled={isAppEnabled}
                             isNetworkCorrect={isNetworkCorrect}
                             userAccountAddress={userAccountAddress}
