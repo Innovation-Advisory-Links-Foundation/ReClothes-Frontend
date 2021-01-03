@@ -10,7 +10,7 @@ type Props = {
  * Implements filter logic based on the type of the cloth.
  */
 function ClothTypeFilter ({ onClothTypeFilterChange }: Props) {
-    const [clothType, setClothType] = useState<number>(6)  // Current cloth type.
+    const [clothType, setClothType] = useState<number>(6) // Current cloth type.
 
     // Callback function for handling filter change events.
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {

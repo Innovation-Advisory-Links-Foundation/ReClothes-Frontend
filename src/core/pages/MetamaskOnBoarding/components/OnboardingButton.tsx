@@ -27,7 +27,9 @@ function OnboardingButton () {
         if (MetaMaskOnboarding.isMetaMaskInstalled()) {
             if (accounts.length > 0) {
                 setButtonText(CONNECTED_TEXT)
-                if (onboarding.current) { onboarding.current.stopOnboarding() }
+                if (onboarding.current) {
+                    onboarding.current.stopOnboarding() 
+                }
             } else {
                 setButtonText(CONNECT_TEXT)
                 setDisabled(false)
@@ -64,7 +66,9 @@ function OnboardingButton () {
                 .request({ method: "eth_requestAccounts" })
                 .then((newAccounts: any) => setAccounts(newAccounts))
         } else {
-            if (onboarding.current) { onboarding.current.startOnboarding() }
+            if (onboarding.current) {
+                onboarding.current.startOnboarding() 
+            }
         }
     }
     return (

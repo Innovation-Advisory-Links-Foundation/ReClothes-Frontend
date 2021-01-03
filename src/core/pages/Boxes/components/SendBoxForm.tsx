@@ -1,5 +1,5 @@
 import React from "react"
-import { FieldArray, useFormik } from 'formik';
+import { FieldArray, useFormik } from "formik"
 import * as Yup from "yup"
 import { Button, Grid, TextField, Typography } from "@material-ui/core"
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
@@ -7,7 +7,7 @@ import { clothType, clothTypesIcons } from "../../../../constants/costants"
 import IconClothQuantity from "./IconClothQuantity"
 import CircularLoader from "../../../../shared/components/CircularLoader"
 import { SecondHandClothesData } from "../../../../Types"
-import classes from "*.module.css";
+import classes from "*.module.css"
 
 const validationSchema = Yup.object({
     description: Yup.string().max(120, "Must be 120 characters or less").required("Required"),
@@ -18,7 +18,7 @@ const validationSchema = Yup.object({
             })
         )
         .required("Required")
-});
+})
 
 type Props = {
     handleClose: () => void, // Callback function for handling modal close.
@@ -31,61 +31,61 @@ type Props = {
 function SendBoxForm ({ handleClose, sendTransaction }: Props) {
     const classes = useStyles()
 
-  const formik = useFormik({
-    initialValues: {
-        description: "",
-        clothes: [
-            {
-                clothType: 0,
-                quantity: 0
-            },
-            {
-                clothType: 1,
-                quantity: 0
-            },
-            {
-                clothType: 2,
-                quantity: 0
-            },
-            {
-                clothType: 3,
-                quantity: 0
-            },
-            {
-                clothType: 4,
-                quantity: 0
-            },
-            {
-                clothType: 5,
-                quantity: 0
-            }
-        ]
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values, { setSubmitting, resetForm }) => {
-        setTimeout(() => {
-            sendTransaction(values.description, values.clothes)
-            resetForm()
-            setSubmitting(false)
-        }, 1000)
-    },
-    onReset: () => {
-        handleClose()
-    }
-  });
+    const formik = useFormik({
+        initialValues: {
+            description: "",
+            clothes: [
+                {
+                    clothType: 0,
+                    quantity: 0
+                },
+                {
+                    clothType: 1,
+                    quantity: 0
+                },
+                {
+                    clothType: 2,
+                    quantity: 0
+                },
+                {
+                    clothType: 3,
+                    quantity: 0
+                },
+                {
+                    clothType: 4,
+                    quantity: 0
+                },
+                {
+                    clothType: 5,
+                    quantity: 0
+                }
+            ]
+        },
+        validationSchema,
+        onSubmit: (values, { setSubmitting, resetForm }) => {
+            setTimeout(() => {
+                sendTransaction(values.description, values.clothes)
+                resetForm()
+                setSubmitting(false)
+            }, 1000)
+        },
+        onReset: () => {
+            handleClose()
+        }
+    })
 
-  return (
-    <div>
-      <form onSubmit={formik.handleSubmit} className={classes.form}>
-          <Typography component="h5" variant="h5" align="center">Send a Box</Typography>
-            <Grid
-                container
-                direction="column"
-                justify="center"
-                alignItems="center"
-                spacing={2}
-            >
-                {formik.values.clothes.length > 0 &&
+    return (
+        <div>
+            <form onSubmit={formik.handleSubmit} className={classes.form}>
+                <Typography component="h5" variant="h5" align="center">Send a Box</Typography>
+                <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                    spacing={2}
+                >
+                    {formik.values.clothes.length > 0 &&
                     formik.values.clothes.map((cloth, index) => (
                         <Grid item key={index}>
                             <IconClothQuantity
@@ -104,37 +104,37 @@ function SendBoxForm ({ handleClose, sendTransaction }: Props) {
                             </IconClothQuantity>
                         </Grid>
                     )
-                )}
-            </Grid>
-        <Grid
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
-        >
-            <Grid item>
-                <TextField
-                    fullWidth
-                    label="Description"
-                    name="description"
-                    type="textarea"
-                    placeholder="A short description..."
-                    value={formik.values.description}
-                    onChange={formik.handleChange}
-                    error={formik.touched.description && Boolean(formik.errors.description)}
-                    className={classes.textArea}
-                />
-            </Grid>
-            <Grid item>
-                <Button color="primary" variant="contained" type="submit" className={classes.button}>
+                    )}
+                </Grid>
+                <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                >
+                    <Grid item>
+                        <TextField
+                            fullWidth
+                            label="Description"
+                            name="description"
+                            type="textarea"
+                            placeholder="A short description..."
+                            value={formik.values.description}
+                            onChange={formik.handleChange}
+                            error={formik.touched.description && Boolean(formik.errors.description)}
+                            className={classes.textArea}
+                        />
+                    </Grid>
+                    <Grid item>
+                        <Button color="primary" variant="contained" type="submit" className={classes.button}>
                     Send box
-                </Button>
-            </Grid>
-        </Grid>
-      </form>
-    </div>
-  );
-};
+                        </Button>
+                    </Grid>
+                </Grid>
+            </form>
+        </div>
+    )
+}
 
 
 

@@ -11,7 +11,7 @@ const estimateTxGas = async (methodToCall: any, from: string, value: Number = 0)
         await methodToCall.estimateGas({
             from,
             value
-        }) * 1.5 // nb. symbolic multiplier for avoiding problems for slightly unbalanced gas estimates.
+        }) * 1.5 // Nb. symbolic multiplier for avoiding problems for slightly unbalanced gas estimates.
     )
 }
 

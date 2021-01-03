@@ -14,7 +14,7 @@ import Footer from "../../components/Footer"
 /** 
  * Guide the user through Metamask installation and connection with the Reclothes dApp.
 */
- function MetamaskOnBoarding () {
+function MetamaskOnBoarding () {
     const classes = useStyles()
     const [openHelpModal, setOpenHelpModal] = useState<boolean>() // Handles the modal open/close logic when clicking the fab button.
 

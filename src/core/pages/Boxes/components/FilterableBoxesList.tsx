@@ -15,7 +15,7 @@ type Props = {
  */
 function FilterableBoxesList ({ drizzle, userAccountAddress, isCustomer }: Props) {
     const [clothTypeFilter, setClothTypeFilter] = useState<number>(6) // Filter based on clothes type.
-    const [evaluationStatusFilter, setEvaluationStatusFilter] = useState<number>(2)  // Filter based on box evaluation status.
+    const [evaluationStatusFilter, setEvaluationStatusFilter] = useState<number>(2) // Filter based on box evaluation status.
 
     // Handler for cloth type filter changes.
     const onClothTypeFilterChange = (clothTypeFilter: number) => {

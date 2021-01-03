@@ -64,65 +64,65 @@ function Box ({ drizzle, userAccountAddress, isCustomer, clothTypeFilter, evalua
     // Match the box data, box second-hand clothes and filters.
     if (boxData && boxSecondHandClothesTypes && boxSecondHandClothesQuantities && isCustomer && 
         ((boxSecondHandClothesTypes.includes((clothTypeFilter))) || clothTypeFilter === 6) &&
-        (Number(boxData.evaluationInToken) === 0 && evaluationStatusFilter === 0 || Number(boxData.evaluationInToken) >= 1 && evaluationStatusFilter === 1 || evaluationStatusFilter === 2 )) {
+        (Number(boxData.evaluationInToken) === 0 && evaluationStatusFilter === 0 || Number(boxData.evaluationInToken) >= 1 && evaluationStatusFilter === 1 || evaluationStatusFilter === 2)) {
  
-            let humanReadableDate
-            if (boxData.timestamp) { 
-                humanReadableDate = new Date(boxData.timestamp * 1000) // Convert the UNIX timestamp to a human-readable data format.
-            }
+        let humanReadableDate
+        if (boxData.timestamp) { 
+            humanReadableDate = new Date(boxData.timestamp * 1000) // Convert the UNIX timestamp to a human-readable data format.
+        }
 
-            return (
-                <Grid item key={boxId} xs={12}>
-                    <Card className={classes.card}>
-                        <Grid
-                            item
-                            container
-                            direction="column"
-                            justify="center"
-                            alignItems="center"
-                        >
-                            <Grid item style={{ marginTop: "8px" }}>
-                                <Typography component="h6" variant="body1" align="center" gutterBottom>
-                                    <i>ID:</i> <b>{boxData.id}</b>
+        return (
+            <Grid item key={boxId} xs={12}>
+                <Card className={classes.card}>
+                    <Grid
+                        item
+                        container
+                        direction="column"
+                        justify="center"
+                        alignItems="center"
+                    >
+                        <Grid item style={{ marginTop: "8px" }}>
+                            <Typography component="h6" variant="body1" align="center" gutterBottom>
+                                <i>ID:</i> <b>{boxData.id}</b>
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <CardMedia
+                                image={boxData.evaluationInToken == 0 ? boxNotEvaluatedIcon : boxEvaluatedIcon }
+                                className={classes.cardMedia}
+                            />
+                        </Grid>
+                        <CardContent className={classes.cardContent}>
+                            <Grid item>
+                                <Typography variant="body1" align="center" gutterBottom>
+                                    {boxData.description}
                                 </Typography>
                             </Grid>
-                            <Grid item>
-                                <CardMedia
-                                    image={boxData.evaluationInToken == 0 ? boxNotEvaluatedIcon : boxEvaluatedIcon }
-                                    className={classes.cardMedia}
-                                />
-                            </Grid>
-                            <CardContent className={classes.cardContent}>
-                                <Grid item>
-                                    <Typography variant="body1" align="center" gutterBottom>
-                                        {boxData.description}
-                                    </Typography>
-                                </Grid>
 
-                                {(humanReadableDate) &&
+                            {(humanReadableDate) &&
                                     <Grid item>
                                         <Typography variant="body1" align="center" gutterBottom>
                                             <i>{humanReadableDate.toLocaleString()}</i>
                                         </Typography>
                                     </Grid>
-                                }
-                                {(boxData.evaluationInToken > 0) &&
+                            }
+                            {(boxData.evaluationInToken > 0) &&
                                     <Grid item>
                                         <Typography variant="body1" align="center" gutterBottom>
                                             <b>{boxData.evaluationInToken}</b> <i>RSC Token</i>
                                         </Typography>
                                     </Grid>
-                                }
-                            </CardContent>
-                        </Grid>
-                        <Grid
-                            item
-                            container
-                            direction="row"
-                            justify="space-around"
-                            alignItems="center"
-                        >
-                            {(boxSecondHandClothesTypes.length > 0 && boxSecondHandClothesQuantities.length > 0) &&
+                            }
+                        </CardContent>
+                    </Grid>
+                    <Grid
+                        item
+                        container
+                        direction="row"
+                        justify="space-around"
+                        alignItems="center"
+                    >
+                        {(boxSecondHandClothesTypes.length > 0 && boxSecondHandClothesQuantities.length > 0) &&
                             boxSecondHandClothesTypes.forEach((clothType: number, idx: number) => {
                                 boxSecondHandClothesComponents.push(
                                     <Grid item key={clothType + boxId}>
@@ -135,14 +135,14 @@ function Box ({ drizzle, userAccountAddress, isCustomer, clothTypeFilter, evalua
                                     </Grid>
                                 )
                             })
-                            }
-                            {(boxSecondHandClothesComponents.length > 0) && boxSecondHandClothesComponents}
-                        </Grid>
-                    </Card>
-                </Grid>
-            )
-        } else
-            return null
+                        }
+                        {(boxSecondHandClothesComponents.length > 0) && boxSecondHandClothesComponents}
+                    </Grid>
+                </Card>
+            </Grid>
+        )
+    } else
+        return null
 }
 const useStyles = makeStyles((theme: Theme) => createStyles({
     cardMedia: {

@@ -6,7 +6,7 @@ import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles"
  */
 let theme = createMuiTheme({
     typography: {
-        fontSize: 18,
+        fontSize: 18
     },
     spacing: 4, // Theme spacing (e.g., theme.spacing(2) // = 4 * 2 = 8px).
     palette: {

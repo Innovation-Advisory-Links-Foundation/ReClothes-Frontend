@@ -17,7 +17,7 @@ type Props = {
  * Also, it defines the routes through the react-router-dom library, allowing for immediate and straightforward passage 
  * of complete updated information between the components,  navigable through a navbar component.
  */
-function Main ({ drizzle }: Props ) {
+function Main ({ drizzle }: Props) {
     const drizzleState = drizzle.store.getState() // Get an updated copy of Drizzle's state.
     const provider = drizzle.web3.givenProvider // Get the MetaMask provider.
     const currentNetworkId = drizzleState.web3.networkId // Current chain id which MetaMask is connected.
@@ -37,7 +37,7 @@ function Main ({ drizzle }: Props ) {
     // Check if the current account is registered as Customer.
     useEffect(() => {
         (async () => {
-            if (!!userAccountAddress) {
+            if (userAccountAddress) {
                 setIsCustomer(await drizzle.contracts.ReclothesShop.methods.customers(userAccountAddress).call())
             }
         })()
@@ -61,7 +61,7 @@ function Main ({ drizzle }: Props ) {
 
     // Execute when the network changes to check if it is the right network.
     useEffect(() => {
-        setIsNetworkCorrect((environment.PROD_NET_MODE && currentNetworkId === environment.PROD_NETWORK_ID) ||  (!environment.PROD_NET_MODE && currentNetworkId.toString().length === 13))
+        setIsNetworkCorrect((environment.PROD_NET_MODE && currentNetworkId === environment.PROD_NETWORK_ID) || (!environment.PROD_NET_MODE && currentNetworkId.toString().length === 13))
     }, [currentNetworkId])
 
     return (

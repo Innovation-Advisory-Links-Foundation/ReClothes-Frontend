@@ -26,7 +26,7 @@ function App () {
                 expirationTime={4000}
                 message={"Loading..."}
             >
-            {Object.keys(drizzleInstance).length &&
+                {Object.keys(drizzleInstance).length &&
                 <DrizzleContext.Provider drizzle={drizzleInstance}>
                     <DrizzleContext.Consumer>
                         {(drizzleContext: any) => {
@@ -45,7 +45,7 @@ function App () {
                         }}
                     </DrizzleContext.Consumer>
                 </DrizzleContext.Provider>
-            }
+                }
             </DelayingCircularLoader>
         </div>
     )
