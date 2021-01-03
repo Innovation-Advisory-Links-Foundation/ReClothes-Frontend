@@ -26,7 +26,7 @@ function Main ({ drizzle }: Props ) {
     const [isNetworkCorrect, setIsNetworkCorrect] = useState<boolean>() // True when the user is connected to the right network (Local dev or Besu networks).
     const [userAccountAddress, setUserAccountAddress] = useState<string>(drizzleState.accounts[0]) // Current Ethereum account address of the user.
     const [isCustomer, setIsCustomer] = useState<boolean>() // True when the user is registered as Customer.
-    console.log(userAccountAddress)
+
     // Send a request to associate the user account with this React app using MetaMask.
     const handleMetaMaskButtonConnection = () => {
         provider.request({ method: "eth_requestAccounts" }).then((accounts: any) => {
@@ -61,9 +61,8 @@ function Main ({ drizzle }: Props ) {
 
     // Execute when the network changes to check if it is the right network.
     useEffect(() => {
-        setIsNetworkCorrect((environment.PROD_NET_MODE && currentNetworkId === environment.PROD_NETWORK_ID) || (!environment.PROD_NET_MODE))
+        setIsNetworkCorrect((environment.PROD_NET_MODE && currentNetworkId === environment.PROD_NETWORK_ID) ||  (!environment.PROD_NET_MODE && currentNetworkId.toString().length === 13))
     }, [currentNetworkId])
-
 
     return (
         <DelayingCircularLoader

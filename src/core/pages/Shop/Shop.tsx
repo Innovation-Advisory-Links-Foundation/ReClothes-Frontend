@@ -1,7 +1,7 @@
 import React from "react"
 import FilterableClothesList from "./components/FilterableClothesList"
 import Footer from "../../components/Footer"
-import CustomerBar from "../../components/CustomerBar"
+import CustomerBar from "./components/CustomerBar"
 import CircularLoader from "../../../shared/components/CircularLoader"
 
 function Shop (props: any) {
@@ -12,7 +12,7 @@ function Shop (props: any) {
                     <CircularLoader />
                 </div>
             }
-            {(props.isAppEnabled) &&
+            {(props.isAppEnabled && props.isNetworkCorrect) &&
                 <div style={{ marginTop: "70px" }}>
                     <CustomerBar
                         userAccountAddress={props.userAccountAddress}

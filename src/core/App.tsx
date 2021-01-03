@@ -35,6 +35,10 @@ function App () {
                             
                             if (!drizzle.web3.givenProvider)
                                 return (<MetamaskOnBoarding />)
+                            else {
+                                drizzle.web3.givenProvider.autoRefreshOnNetworkChange = false
+                                drizzle.web3.givenProvider.on("chainChanged", () => window.location.reload())
+                            }
 
                             if (drizzleState.drizzleStatus.initialized)
                                 return <Main drizzle={drizzle} />

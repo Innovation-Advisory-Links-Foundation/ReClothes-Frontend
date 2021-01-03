@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { createStyles, makeStyles, Theme, withStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
@@ -17,14 +17,18 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket"
 import ReClothesLogo from "../../assets/icons/ReClothesLogo.png"
 
 type Props = {
-    handleMetaMaskButtonConnection: () => void,
+    handleMetaMaskButtonConnection: () => void, // Callback for handling MetaMask account association with this React app.
     isAppEnabled: boolean,
     isNetworkCorrect: boolean
 }
 
+/**
+ * Navigation bar component for the entire application.
+ */
 function Navbar ({ handleMetaMaskButtonConnection, isAppEnabled, isNetworkCorrect }: Props) {
     const classes = useStyles()
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget)
@@ -39,6 +43,7 @@ function Navbar ({ handleMetaMaskButtonConnection, isAppEnabled, isNetworkCorrec
             <nav>
                 <AppBar position="fixed">
                     <Toolbar style={!isAppEnabled ? { justifyContent: "center" } : { justifyContent: "inherit" }}>
+                        {/* Shows only if the app and the network are correct. */}
                         {(isAppEnabled && isNetworkCorrect) &&
                             <Hidden only={["sm", "md", "lg", "xl"]}>
                                 <IconButton
@@ -96,6 +101,7 @@ function Navbar ({ handleMetaMaskButtonConnection, isAppEnabled, isNetworkCorrec
                                 <img src={ReClothesLogo} alt="ReClothes Logo" style={{ width: "256px" }}/>
                             </Typography>
                         }
+                        {/* Button for associating the MetaMask account with the React app. */}
                         {(!isAppEnabled) &&
                             <Grid item>
                                 <Button
@@ -109,6 +115,7 @@ function Navbar ({ handleMetaMaskButtonConnection, isAppEnabled, isNetworkCorrec
                                 </Button>
                             </Grid>
                         }
+                        {/* Display info for connect to the right network. */}
                         {(isAppEnabled && !isNetworkCorrect) &&
                             <TransitionsModal
                                 isOpen={true}
@@ -146,6 +153,8 @@ function Navbar ({ handleMetaMaskButtonConnection, isAppEnabled, isNetworkCorrec
         </div>
     )
 }
+
+/** Custom styles */
 
 const StyledMenu = withStyles({
     paper: {
