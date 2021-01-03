@@ -21,6 +21,7 @@ function FilterableClothesList ({ drizzle, userAccountAddress, isCustomer }: Pro
     const onClothTypeFilterChange = (clothTypeFilter: number) => {
         setClothTypeFilter(clothTypeFilter)
     }
+    
     // Handler for cloth size filter changes.
     const onClothSizeFilterChange = (clothSizeFilter: number) => {
         setClothSizeFilter(clothSizeFilter)

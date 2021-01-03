@@ -5,7 +5,7 @@ import CustomerBar from "./components/CustomerBar"
 import CircularLoader from "../../../shared/components/CircularLoader"
 
 type Props = {
-    drizzle: any, // Initialized Drizzle instance.
+    drizzle: any,
     isAppEnabled: boolean,
     isNetworkCorrect: boolean,
     userAccountAddress: string,

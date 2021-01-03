@@ -3,7 +3,7 @@ import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } f
 import { makeStyles } from "@material-ui/core/styles"
 import clothesImages from "../../../../assets/mocks/saleableClothesExternalDataHash.json"
 import { clothSize, clothStatus } from "../../../../constants/costants"
-import { SaleableClothData } from "../../../../Types"
+import { ClothData } from "../../../../Types"
 
 type Props = {
     drizzle: any,
@@ -17,10 +17,10 @@ type Props = {
 /**
  * Show and implement the purchase logic for a single saleable cloth in the shop.
  */
-function SaleableCloth ({ drizzle, userAccountAddress, saleableClothId, clothTypeFilter, clothSizeFilter, isCustomer }: Props) {
+function SaleableCloth ({ drizzle, userAccountAddress, isCustomer, clothTypeFilter, clothSizeFilter, saleableClothId }: Props) {
     const classes = useStyles()
 
-    const [saleableClothData, setSaleableClothData] = useState<SaleableClothData>() // The object containing the whole data for the saleable cloth.
+    const [saleableClothData, setSaleableClothData] = useState<ClothData>() // The object containing the whole data for the saleable cloth.
     const [dataKey, setDataKey] = useState<string>() // Drizzle cacheCall method data key.
     const [customerRscBalance, setCustomerRscBalance] = useState<number>() // The RSC tokens balance for the account.
 
@@ -120,9 +120,6 @@ const useStyles = makeStyles((theme) => ({
     },
     cardContent: {
         flexGrow: 1
-    },
-    label: {
-        opacity: "0.5"
     }
 }))
 export default SaleableCloth

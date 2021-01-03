@@ -95,7 +95,6 @@ function Main ({ drizzle }: Props ) {
                     <Route path="/collection" exact render={(props) =>
                         <Collection
                             drizzle={drizzle}
-                            provider={provider}
                             isAppEnabled={isAppEnabled}
                             isNetworkCorrect={isNetworkCorrect}
                             userAccountAddress={userAccountAddress}
