@@ -7,12 +7,26 @@ import SendBox from "./components/SendBox"
 import { Fab } from "@material-ui/core"
 import AddIcon from "@material-ui/icons/Add"
 import DelayingCircularLoader from "../../../shared/components/DelayingCircularLoader"
+import CircularLoader from "../../../shared/components/CircularLoader"
 
-function Boxes (props: any) {
+type Props = {
+    drizzle: any,
+    isAppEnabled: boolean,
+    isNetworkCorrect: boolean,
+    userAccountAddress: string,
+    isCustomer: boolean 
+}
+
+/**
+ * Show the boxes page. A user can send a new box of second-hand clothes to the ReClothes Dealer, fill in a form, 
+ * and then see the box sent and the evaluation amount in RSC tokens (if evaluated).
+ */
+function Boxes ({ drizzle, isAppEnabled, isNetworkCorrect, userAccountAddress, isCustomer }: Props) {
     const classes = useStyles()
-    const [openFabModal, setOpenFabModal] = useState(false) // Handles the modal open/close logic when clicking the fab button.
 
-    // Callback for fab button click.
+    const [openFabModal, setOpenFabModal] = useState<boolean>(false) // Fab button open/close flag.
+
+    // Handle fab modal open.
     const handleFabModalOpen = () => {
         setOpenFabModal(true)
     }
@@ -21,28 +35,25 @@ function Boxes (props: any) {
     const handleFabModalClose = () => {
         setOpenFabModal(false)
     }
+
     return (
         <div style={{ width: "100vw" }}>
-            {(!props.isAppEnabled || !props.isNetworkCorrect) &&
+            {/* Shows a loader when the app is not connected to the account or the network is wrong. */}
+            {(!isAppEnabled || !isNetworkCorrect) &&
                 <div style={{ marginTop: "70px" }}>
-                    <DelayingCircularLoader
-                        expirationTime={1500}
-                        message={"Please enable MetaMask!"}
-                    >
-
-                    </DelayingCircularLoader>
+                    <CircularLoader />
                 </div>
             }
-            {(props.isAppEnabled) &&
+            {(isAppEnabled && isNetworkCorrect) &&
                 <div style={{ marginTop: "70px" }}>
                     <DelayingCircularLoader
                         expirationTime={2000}
                         message={"Reading Blockchain state..."}
                     >
                         <FilterableBoxesList
-                            drizzle={props.drizzle}
-                            userAccountAddress={props.userAccountAddress}
-                            isCustomer={props.isCustomer}
+                            drizzle={drizzle}
+                            userAccountAddress={userAccountAddress}
+                            isCustomer={isCustomer}
                         />
                     </DelayingCircularLoader>
 
@@ -51,13 +62,13 @@ function Boxes (props: any) {
                         handleClose={handleFabModalClose}
                     >
                         <SendBox
-                            drizzle={props.drizzle}
+                            drizzle={drizzle}
+                            userAccountAddress={userAccountAddress}
                             handleClose={handleFabModalClose}
-                            userAccountAddress={props.userAccountAddress}
                         />
                     </TransitionsModal>
 
-                    {(props.isCustomer) && 
+                    {(isCustomer) && 
                         <Fab color="primary" aria-label="add" className={classes.fab} onClick={handleFabModalOpen}>
                             <AddIcon />
                         </Fab>

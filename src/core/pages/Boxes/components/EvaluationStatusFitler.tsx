@@ -2,14 +2,17 @@ import { FormControl, InputLabel, MenuItem } from "@material-ui/core"
 import React, { useState } from "react"
 import Select from "@material-ui/core/Select/Select"
 
-// Defining the TS type for every property passed as props.
 type Props = {
-    onEvaluationStatusFilterChange: (arg0: number) => void,
+    onEvaluationStatusFilterChange: (arg0: number) => void // Handler for box evaluation status filter changes.
 }
 
+/**
+ * Implements filter logic based on the evaluation status of a box.
+ */
 function EvaluationStatusFilter ({ onEvaluationStatusFilterChange }: Props) {
-    const [evaluationStatus, setEvaluationStatus] = useState(2)
+    const [evaluationStatus, setEvaluationStatus] = useState<number>(2) // Current box evaluation status.
 
+    // Callback function for handling filter change events.
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         setEvaluationStatus(event.target.value as number)
         onEvaluationStatusFilterChange(event.target.value as number)

@@ -13,3 +13,17 @@ export type ClothData = {
     timestamp: number
     info: string
 }
+
+export type BoxData = {
+    id: number
+    timestamp: number
+    numberOfClothTypes: number
+    evaluationInToken: number
+    description: string
+    sender: string
+}
+
+export type SecondHandClothesData = {
+    clothType: number
+    quantity: number
+}

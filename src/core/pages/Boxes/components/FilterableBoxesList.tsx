@@ -4,16 +4,25 @@ import BoxesTable from "./BoxesTable"
 import ClothTypeFilter from "../../../../shared/components/ClothTypeFilter"
 import EvaluationStatusFilter from "./EvaluationStatusFitler"
 
-// Handles a filterable list of projects.
-function FilterableBoxesList (props: any) {
-    const [clothTypeFilter, setClothTypeFilter] = useState(6)
-    const [evaluationStatusFilter, setEvaluationStatusFilter] = useState(2)
+type Props = {
+    drizzle: any,
+    userAccountAddress: string,
+    isCustomer: boolean 
+}
 
-    // On click handler for status filter changes.
+/**
+ * Shows and filter on a list of boxes.
+ */
+function FilterableBoxesList ({ drizzle, userAccountAddress, isCustomer }: Props) {
+    const [clothTypeFilter, setClothTypeFilter] = useState<number>(6) // Filter based on clothes type.
+    const [evaluationStatusFilter, setEvaluationStatusFilter] = useState<number>(2)  // Filter based on box evaluation status.
+
+    // Handler for cloth type filter changes.
     const onClothTypeFilterChange = (clothTypeFilter: number) => {
         setClothTypeFilter(clothTypeFilter)
     }
-    // On click handler for status filter changes.
+
+    // Handler for box evaluation status filter changes.
     const onEvaluationStatusFilterChange = (evaluationStatusFilter: number) => {
         setEvaluationStatusFilter(evaluationStatusFilter)
     }
@@ -40,13 +49,12 @@ function FilterableBoxesList (props: any) {
                 </Grid>
             </Grid>
             <BoxesTable
-                drizzle={props.drizzle}
-                userAccountAddress={props.userAccountAddress}
+                drizzle={drizzle}
+                userAccountAddress={userAccountAddress}
+                isCustomer={isCustomer}
                 clothTypeFilter={clothTypeFilter}
                 evaluationStatusFilter={evaluationStatusFilter}
-                isCustomer={props.isCustomer}
             />
-
         </div>
     )
 }

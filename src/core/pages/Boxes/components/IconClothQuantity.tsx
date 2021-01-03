@@ -4,10 +4,13 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 
 type Props = {
     url: string, // The url of the icon.
-    dim?: number,
+    dim?: number, // Icon dimension in pixels.
     children: {}
 }
 
+/**
+ * A reusable component which displays a custom icon and the passed children in a flex row centered view.
+ */
 function IconClothQuantity ({ url, dim = 64, children }: Props) {
     const classes = useStyles()
 
@@ -25,7 +28,8 @@ function IconClothQuantity ({ url, dim = 64, children }: Props) {
             </Typography>
         </Grid>
     )
-}
+}            
+
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
     icon: {
