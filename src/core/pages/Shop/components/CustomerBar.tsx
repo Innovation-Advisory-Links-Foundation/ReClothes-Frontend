@@ -4,35 +4,40 @@ import Button from "@material-ui/core/Button"
 import { Grid, Hidden } from "@material-ui/core"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import Jdenticon from "react-jdenticon"
-import ETHAddress from "../../shared/components/ETHAddress"
+import ETHAddress from "../../../../shared/components/ETHAddress"
 
 type Props = {
-    drizzle: any, // Drizzle initialized instance.
+    drizzle: any,
     userAccountAddress: string,
     isCustomer: boolean
 }
 
+/**
+ * Allow to register as a Customer via a button and show the MetaMask account's address +
+ * currently connected and the balance in RSC tokens associated with it (if registered as a customer).
+ */
 function CustomerBar ({ drizzle, userAccountAddress, isCustomer } : Props) {
     const classes = useStyles()
 
-    // eslint-disable-next-line
-    const [stackId, setStackId] = useState(0) // Drizzle tx stack identifier.
-    const [customerRscBalance, setCustomerRscBalance] = useState(0)
+    const [customerRscBalance, setCustomerRscBalance] = useState<number>() // The RSC tokens balance for the current account.
 
+    // Callback function for sending a transaction.
     const sendTransaction = () => {
-        setStackId(drizzle.contracts.ReclothesShop.methods.registerAsCustomer.cacheSend({ from: userAccountAddress }))
+        drizzle.contracts.ReclothesShop.methods.registerAsCustomer().send({ from: userAccountAddress })
     }
 
+    // Retrieve the RSC tokens balance for the customer account.
     useEffect(() => {
         (async () => {
-            if (isCustomer && userAccountAddress)
-            // @ts-ignore
-            { setCustomerRscBalance(await drizzle.contracts.ResellingCredit.methods.balanceOf(userAccountAddress).call()) }
+            if (userAccountAddress && isCustomer) { 
+                setCustomerRscBalance(await drizzle.contracts.ResellingCredit.methods.balanceOf(userAccountAddress).call()) 
+            }
         })()
     })
 
     return (
         <div>
+            {/* Shows a button to register as customer. */}
             {(!isCustomer) &&
                 <Grid
                     container
@@ -49,11 +54,12 @@ function CustomerBar ({ drizzle, userAccountAddress, isCustomer } : Props) {
                             style={{ width: "100%" }}
                             onClick={sendTransaction}
                         >
-                        Click to register as Customer to buy clothes!
+                        Register as Customer
                         </Button>
                     </Grid>
                 </Grid>
             }
+            {/* Shows account address and RSC tokens balance */}
             {(isCustomer) &&
                 <Grid
                     container
@@ -96,6 +102,7 @@ function CustomerBar ({ drizzle, userAccountAddress, isCustomer } : Props) {
         </div>
     )
 }
+
 const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
         backgroundColor: theme.palette.background.default,
