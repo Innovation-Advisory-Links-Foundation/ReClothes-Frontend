@@ -1,0 +1,66 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@drizzle/react-plugin": "^1.5.3",
+    "@drizzle/store": "^1.5.3",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@metamask/onboarding": "^1.0.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.58",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-jdenticon": "0.0.8",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "typescript": "^3.7.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx --fix"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-flowtype": "^4.0.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "eslint-plugin-standard": "^4.0.1",
+    "formik": "^2.1.5",
+    "yup": "^0.29.3"
+  }
+}

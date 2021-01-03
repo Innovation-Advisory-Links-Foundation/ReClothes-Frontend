@@ -1,0 +1,17 @@
+# Dependency Dir
+node_modules
+
+# Local Environment Variables
+.env
+
+# Output/Build Dirs
+build
+dist
+
+# IDE
+.idea
+.vscode
+
+# Misc
+.gitkeep
+.eslintcache
