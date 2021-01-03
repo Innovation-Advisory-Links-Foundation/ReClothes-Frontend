@@ -10,7 +10,7 @@ import { Grid, Hidden, ListItemIcon, ListItemText, Menu, MenuItem, MenuProps } f
 import ExitToAppIcon from "@material-ui/icons/ExitToApp"
 import { Link } from "react-router-dom"
 import TransitionsModal from "../../shared/components/TransitionsModal"
-import ConnectionHelp from "../pages/ConnectionHelp/ConnectionHelp"
+import NetworkInfo from "../../shared/components/NetworkInfo"
 import ShopIcon from "@material-ui/icons/Shop"
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank"
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket"
@@ -120,7 +120,7 @@ function Navbar ({ handleMetaMaskButtonConnection, isAppEnabled, isNetworkCorrec
                             <TransitionsModal
                                 isOpen={true}
                             >
-                                <ConnectionHelp />
+                                <NetworkInfo />
                             </TransitionsModal>
                         }
                         {(isAppEnabled) &&

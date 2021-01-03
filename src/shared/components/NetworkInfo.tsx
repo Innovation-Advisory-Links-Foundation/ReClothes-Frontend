@@ -1,7 +1,10 @@
 import { Container, Grid, Typography } from "@material-ui/core"
 import React from "react"
 
-function ConnectionHelp () {
+/**
+ * Display information regarding safe and fast network configuration and connection using MetaMask.
+ */
+function NetworkInfo () {
     return (
         <Container maxWidth="sm">
             <Grid
@@ -13,7 +16,7 @@ function ConnectionHelp () {
             >
                 <Grid item>
                     <Typography component="h1" variant="h6" align="center" gutterBottom>
-                        How to connect using MetaMask
+                        MetaMask Network Configuration
                     </Typography>
                 </Grid>
                 <Grid item>
@@ -21,7 +24,7 @@ function ConnectionHelp () {
                         Please create a new custom RPC network on your MetaMask using these values for the specified fields.
                         <br></br>
                         <br></br>
-                        - New RPC URL: <b>http://linksfoundationtodo/besu:8545</b>
+                        - New RPC URL: <b>http://localhost:8545</b>
                         <br></br>
                         - Chain ID: <b>2018</b>
                         <br></br>
@@ -34,4 +37,4 @@ function ConnectionHelp () {
     )
 }
 
-export default ConnectionHelp
+export default NetworkInfo

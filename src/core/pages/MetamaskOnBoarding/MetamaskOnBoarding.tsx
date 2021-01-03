@@ -8,44 +8,30 @@ import Container from "@material-ui/core/Container"
 import ReClothesLogo from "../../../assets/icons/ReClothesLogo.png"
 import OnboardingButton from "./components/OnboardingButton"
 import TransitionsModal from "../../../shared/components/TransitionsModal"
-import ConnectionHelp from "../ConnectionHelp/ConnectionHelp"
+import NetworkInfo from "../../../shared/components/NetworkInfo"
+import Footer from "../../components/Footer"
 
-function Copyright () {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {"Copyright © "}
-            <Link color="inherit" target="_blank" rel="noopener" href="http://overtheblock.io/">
-                OverTheBlock
-            </Link>
-            {" - "}
-            <Link color="inherit" target="_blank" rel="noopener" href="https://linksfoundation.com/">
-                LINKS Foundation
-            </Link>
-            {" "}
-            {new Date().getFullYear()}
-            {"."}
-        </Typography>
-    )
-}
-
-// Guide the user through Metamask installation and connection with the Reclothes dApp.
-function MetamaskOnBoarding () {
+/** 
+ * Guide the user through Metamask installation and connection with the Reclothes dApp.
+*/
+ function MetamaskOnBoarding () {
     const classes = useStyles()
-    const [openHelpModal, setOpenHelpModal] = useState(false) // Handles the modal open/close logic when clicking the fab button.
+    const [openHelpModal, setOpenHelpModal] = useState<boolean>() // Handles the modal open/close logic when clicking the fab button.
 
-    // Callback for fab button click.
+    // Callback for fab button onClick.
     const handleHelpModalOpen = () => {
         setOpenHelpModal(true)
     }
 
-    // Callback to pass down as props for handling modal close.
+    // Callback for handling modal close to pass down as props.
     const handleHelpModalClose = () => {
         setOpenHelpModal(false)
     }
+
     return (
         <Container component="main" maxWidth="md">
             <div className={classes.root}>
-                <img src={ReClothesLogo} alt="ReClothes Logo" style={{ width: "auto", height: "auto" }} />
+                <img src={ReClothesLogo} alt="ReClothes Logo" style={{ width: "80%", height: "auto" }} />
                 <Typography component="h1" variant="h4" align="center" gutterBottom style={{marginTop: "5%"}}>
                     Sell second-hand clothes <span role="img" aria-label="t-shirt">👕</span>  Earn tokens<span role="img" aria-label="loot">💰</span>  Save the Earth<span role="img" aria-label="earth">🌍</span>
                 </Typography>
@@ -56,13 +42,10 @@ function MetamaskOnBoarding () {
                         isOpen={openHelpModal}
                         handleClose={handleHelpModalClose}
                     >
-                        <ConnectionHelp />
+                        <NetworkInfo />
                     </TransitionsModal>
                     <Grid container>
                         <Grid item xs>
-                            <Link href="#" variant="body2">
-                                How it works?
-                            </Link>
                         </Grid>
                         <Grid item>
                             <Link href="#" variant="body2" onClick={handleHelpModalOpen}>
@@ -73,7 +56,7 @@ function MetamaskOnBoarding () {
                 </form>
             </div>
             <Box mt={8}>
-                <Copyright />
+                <Footer />
             </Box>
         </Container>
     )
@@ -89,9 +72,6 @@ const useStyles = makeStyles((theme) => ({
     form: {
         width: "100%", // Fix IE 11 issue.
         marginTop: theme.spacing(10)
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2)
     }
 }))
 

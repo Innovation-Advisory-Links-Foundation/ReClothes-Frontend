@@ -1,24 +1,29 @@
 import { Button } from "@material-ui/core"
 import MetaMaskOnboarding from "@metamask/onboarding"
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 const ONBOARD_TEXT = "Install MetaMask"
 const CONNECT_TEXT = "Connect to Reclothes dApp"
 const CONNECTED_TEXT = "Go to Shop"
 
+/**
+ * Dynamic button for user onboarding with MetaMask.
+ */
 function OnboardingButton () {
-    const [buttonText, setButtonText] = React.useState(ONBOARD_TEXT)
-    const [isDisabled, setDisabled] = React.useState(false)
-    const [accounts, setAccounts] = React.useState([])
+    const [buttonText, setButtonText] = useState<string>(ONBOARD_TEXT)
+    const [isDisabled, setDisabled] = useState<boolean>(false)
+    const [accounts, setAccounts] = useState<string[]>([])
     const onboarding = React.useRef<MetaMaskOnboarding>()
 
-    React.useEffect(() => {
+    // Start a new onboarding if there is not already a current one.
+    useEffect(() => {
         if (!onboarding.current) {
             onboarding.current = new MetaMaskOnboarding()
         }
     }, [])
 
-    React.useEffect(() => {
+
+    useEffect(() => {
         if (MetaMaskOnboarding.isMetaMaskInstalled()) {
             if (accounts.length > 0) {
                 setButtonText(CONNECTED_TEXT)
@@ -30,7 +35,8 @@ function OnboardingButton () {
         }
     }, [accounts])
 
-    React.useEffect(() => {
+    // Check if MetaMask is installed correctly.
+    useEffect(() => {
         function handleNewAccounts (newAccounts: any) {
             setAccounts(newAccounts)
         }
@@ -50,6 +56,7 @@ function OnboardingButton () {
         }
     }, [])
 
+    // Association of the account with the dApp.
     const onClick = () => {
         if (MetaMaskOnboarding.isMetaMaskInstalled()) {
             // @ts-ignore
