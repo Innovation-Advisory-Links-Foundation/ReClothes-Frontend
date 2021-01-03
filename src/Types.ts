@@ -2,7 +2,14 @@
  * Custom type definition for the ReClothes dApp.
  */
 
-export type SampleType = {
-    field1: string
-    field2: number
+export type SaleableClothData = {
+    id: number
+    price: number
+    clothType: number
+    clothSize: number
+    clothStatus: number
+    description: string
+    buyer: string
+    timestamp: number
+    info: string
 }
