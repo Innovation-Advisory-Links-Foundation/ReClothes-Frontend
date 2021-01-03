@@ -26,9 +26,11 @@ function Footer () {
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
+        backgroundColor: "#F5F5F5",
         bottom: 0,
         left: 0,
         width: "100%",
+        height: "25px",
         position: "fixed",
         padding: theme.spacing(1)
     }

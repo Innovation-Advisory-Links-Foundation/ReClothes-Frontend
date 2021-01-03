@@ -98,7 +98,7 @@ function Navbar ({ handleMetaMaskButtonConnection, isAppEnabled, isNetworkCorrec
                         }
                         {(isAppEnabled) &&
                             <Typography variant="h6" color="inherit" noWrap className={classes.title}>
-                                <img src={ReClothesLogo} alt="ReClothes Logo" style={{ width: "256px" }}/>
+                                <img src={ReClothesLogo} alt="ReClothes Logo" style={{ width: "196px" }}/>
                             </Typography>
                         }
                         {/* Button for associating the MetaMask account with the React app. */}
