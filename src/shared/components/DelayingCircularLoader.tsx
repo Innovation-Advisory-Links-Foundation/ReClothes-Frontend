@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import Fade from "@material-ui/core/Fade"
 import CircularProgress from "@material-ui/core/CircularProgress"
@@ -11,12 +11,17 @@ type Props = {
   children: {} // A JS object containing React components to display.
 }
 
+/**
+ * A customizable component which displays a centered CircularProgress loader with a custom message below for a certain amount of time.
+ */
 function DelayingCircularLoader ({ expirationTime = 1000, message = "", children }: Props) {
     const classes = useStyles()
-    const timerRef = React.useRef<number>() // Persistent time reference for the timeout definition.
-    const [status, setStatus] = React.useState("idle") // The circular loader status (idle, progress, finished).
 
-    React.useEffect(() => {
+    const timerRef = React.useRef<number>() // Persistent time reference for the timeout definition.
+    const [status, setStatus] = useState<string>("idle") // The circular loader status (idle, progress, finished).
+
+    // Handling delay logic at the component startup and timeout expiration.
+    useEffect(() => {
         clearTimeout(timerRef.current)
         setStatus("progress")
 
@@ -73,9 +78,6 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: "column",
             alignItems: "center",
             width: "100%"
-        },
-        button: {
-            margin: theme.spacing(2)
         },
         placeholder: {
             height: 40

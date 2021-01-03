@@ -2,7 +2,6 @@ import React from "react"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import { Grid, Typography } from "@material-ui/core"
 
-// Defining the TS type for every property passed as props.
 type Props = {
     color?: "inherit" | "primary" | "secondary" | undefined,
     size?: number,
@@ -10,7 +9,9 @@ type Props = {
     message?: string
 }
 
-// A reusable component which displays a centered CircularProgress loader with a custom message.
+/**
+ * A customizable component which displays a centered CircularProgress loader with a custom message below.
+ */
 function CircularLoader ({ color = "primary", size = 50, thickness = 5, message = "" }: Props) {
     return (
         <Grid

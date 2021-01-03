@@ -2,14 +2,17 @@ import { FormControl, InputLabel, MenuItem } from "@material-ui/core"
 import React, { useState } from "react"
 import Select from "@material-ui/core/Select/Select"
 
-// Defining the TS type for every property passed as props.
 type Props = {
-    onClothTypeFilterChange: (arg0: number) => void,
+    onClothTypeFilterChange: (arg0: number) => void // Handler for cloth type filter changes.
 }
 
+/**
+ * Implements filter logic based on the type of the cloth.
+ */
 function ClothTypeFilter ({ onClothTypeFilterChange }: Props) {
-    const [clothType, setClothType] = useState(6)
+    const [clothType, setClothType] = useState<number>(6)  // Current cloth type.
 
+    // Callback function for handling filter change events.
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         setClothType(event.target.value as number)
         onClothTypeFilterChange(event.target.value as number)

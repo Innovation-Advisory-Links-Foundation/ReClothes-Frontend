@@ -4,16 +4,16 @@ import Modal from "@material-ui/core/Modal"
 import Backdrop from "@material-ui/core/Backdrop"
 import Fade from "@material-ui/core/Fade"
 
-// Defining the TS type for every property passed as props.
 type Props = {
     isOpen: boolean, // The open/close modal external handler.
     handleClose?: () => void, // Callback function that will set isOpen to false on modal close.
     children: {}
 }
 
-// A reusable custom Transitional Modal component.
-// The open/close behaviour can be handle outside the component, so it can be used for multiple
-// Purposes (e.g., always opened, open/close external buttons, etc.).
+/**
+ * A reusable custom Transitional Modal component.
+ * The open/close behaviour can be handle outside the component, so it can be used for multiple purposes (e.g., always opened, open/close external buttons, etc.).
+ */
 function TransitionsModal ({ isOpen, handleClose, children }: Props) {
     const classes = useStyles()
 
