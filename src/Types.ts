@@ -2,7 +2,7 @@
  * Custom type definition for the ReClothes dApp.
  */
 
-export type SaleableClothData = {
+export type ClothData = {
     id: number
     price: number
     clothType: number

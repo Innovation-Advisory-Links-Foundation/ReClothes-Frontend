@@ -4,16 +4,25 @@ import ClothTypeFilter from "../../../../shared/components/ClothTypeFilter"
 import ClothSizeFilter from "../../../../shared/components/ClothSizeFilter"
 import CollectionClothesTable from "./CollectionClothesTable"
 
-// Handles a filterable list of projects.
-function FilterableCollectionClothesList (props: any) {
-    const [clothTypeFilter, setClothTypeFilter] = useState(6)
-    const [clothSizeFilter, setClothSizeFilter] = useState(6) // Filter based on clothes status (second-hand, upcycled).
+type Props = {
+    drizzle: any,
+    userAccountAddress: string,
+    isCustomer: boolean 
+}
 
-    // On click handler for status filter changes.
+/**
+ * Shows and filter on a list of purchased clothes.
+ */
+function FilterableCollectionClothesList ({ drizzle, userAccountAddress, isCustomer }: Props) {
+    const [clothTypeFilter, setClothTypeFilter] = useState<number>(6) // Filter based on clothes type.
+    const [clothSizeFilter, setClothSizeFilter] = useState<number>(6) // Filter based on clothes size.
+
+    // Handler for cloth type filter changes.
     const onClothTypeFilterChange = (clothTypeFilter: number) => {
         setClothTypeFilter(clothTypeFilter)
     }
-    // On click handler for status filter changes.
+
+    // Handler for cloth size filter changes.
     const onClothSizeFilterChange = (clothSizeFilter: number) => {
         setClothSizeFilter(clothSizeFilter)
     }
@@ -40,11 +49,11 @@ function FilterableCollectionClothesList (props: any) {
                 </Grid>
             </Grid>
             <CollectionClothesTable
-                drizzle={props.drizzle}
-                userAccountAddress={props.userAccountAddress}
+                drizzle={drizzle}
+                userAccountAddress={userAccountAddress}
+                isCustomer={isCustomer}
                 clothTypeFilter={clothTypeFilter}
                 clothSizeFilter={clothSizeFilter}
-                isCustomer={props.isCustomer}
             />
 
         </div>
