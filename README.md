@@ -1,6 +1,6 @@
 # ReClothes
 
-**A decentralized solution for second-hand clothes recycle in the fashion industry.**
+**A decentralized solution for second-hand clothes recycles in the fashion industry.**
 
 * Designed as an enterprise blockchain-based network on [Hyperledger Besu](https://besu.hyperledger.org/en/stable/).
 * Allows **confidential** transactions visible only among business partners while keeping a transparent public history of quantities, processes, events, and payments.
