@@ -109,7 +109,7 @@ Run ESLint to check the syntax and style of your TypeScript code.
 npm run lint
 ```
 
-## Screenshoots
+## Screenshoots
 
 ### MetaMask Onboarding
 
@@ -122,7 +122,7 @@ npm run lint
     </div>
 <p align="center"> <i>Figure 2.</i> Page for guiding the user to onboard with MetaMask </p>
 
-### Shop Page for a User
+### Shop Page for a User
 
 <div align="center">
     <img 
@@ -133,7 +133,7 @@ npm run lint
     </div>
 <p align="center"> <i>Figure 3.</i> Shop page for a non-customer user </p>
 
-#### Shop Page for a Customer
+### Shop Page for a Customer
 
 <div align="center">
     <img 
