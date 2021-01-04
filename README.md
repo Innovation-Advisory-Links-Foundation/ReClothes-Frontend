@@ -1,104 +1,50 @@
-# Ethereum Frontend Boilerplate
-Build decentralized applications (*dApps*) on top of the Ethereum blockchain using the latest *bleeding-edge* technologies and tools to accelerate the development process with a reliable, modern, fast, and customizable approach.
+# ReClothes
 
-You can find a simple decentralized Crowdfunding dApp example built using this boilerplate on branch `example`.
+**A decentralized solution for second-hand clothes recycle in the fashion industry.**
+
+* Designed as an enterprise blockchain-based network on [Hyperledger Besu](https://besu.hyperledger.org/en/stable/).
+* Allows **confidential** transactions visible only among business partners while keeping a transparent public history of quantities, processes, events, and payments.
+* Encourages individuals' participation in the circular economy through a *double-incentive* using two [ERC20](https://docs.openzeppelin.com/contracts/erc20) token implementations, automating payments and rewarding mechanisms.
+* Provides a *public* interface for people who wants to support the eco-friendly fashion industry by sending second-hand clothes and/or buying upcycled clothes.
+
+You can learn more about the main challenges of the fashion sector and our solution's design to the article on our [OverTheBlock Medium](https://medium.com/overtheblock/reclothes-a-blockchain-based-solution-for-second-hand-clothes-market-ca2061080e3c) page.
 
 
 ## Table of Contents
-- [What is an Ethereum dApp?](#what-is-an-ethereum-dapp)
-- [What is Included?](#what-is-included)
-- [Folder Structure](#folder-structure)
+- [Workflow](#workflow)
+- [Frontend](#frontend)
 - [Getting Started](#getting-started)
     - [Prerequisities](#prerequisities)
-    - [Initialization](#initialization)
+    - [Configuration](#configuration)
+    - [Usage](#usage)
+- [Screenshoots](#screenshoots)
 - [Development Rules](#development-rules)
     - [Commit](#commit)
     - [Branch](#branch)
 - [License](#license)
 
-### What is an Ethereum dApp?
-*DApp* (or *dApp*) is an abbreviated form for Decentralized Application, a computer application that runs on a distributed computing system. 
-
-In a classical software application approach, the code runs on centralized servers (e.g., AWS or NodeJS). However, in a full-decentralized process, the dApp has its backend code running on a decentralized peer-to-peer network (e.g., Ethereum Blockchain smart contracts) as well as its frontend application running on a decentralized storage system (e.g., Swarm or IPFS). The frontend calls the backend blockchain nodes directly through RPC endpoints.
+## Workflow
 
 <div align="center">
     <img 
         align="center" 
-        src="./resources/Ethereum_dApp_architecture.png" 
-        alt="An overview of an Ethereum dApp Architecture"
+        src="./resources/workflow.svg" 
+        alt="An high-level representation of ReClothes solution workflow"
     />
     </div>
-<p align="center"> <i>Figure 1.</i> An overview of an Ethereum dApp Architecture. </p>
+<p align="center"> <i>Figure 1.</i> A high-level representation of ReClothes solution workflow </p>
 
-This repository is focused on help you creating modern and effective clients to interact with your smart contracts (SC) business logic deployed in a local or remote (public networks) environment.
+Figure 1 shows a high-level representation of the actors and the workflow of their features in ReClothes. The designed solution involves three different actors: 
+* **ReClothes Dealer**: who represents a company operating in the fashion market, 
+* **Recyclers**: who represents companies or entities which are involved in commercial relationships regarding clothes recycling activities and,
+* **Customers**: who represents people interested in sending second-hand clothes and/or buying upcycled clothes.
 
-### What is Included?
-The frontend is built on top of [Create React App](https://create-react-app.dev/), a tool that bootstrap a React application with some useful tools under the hood (e.g., [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), [ESLint](https://eslint.org/), ...) removing the burden of learning and configuration. 
+The information regarding Customers and ReClothes Dealer interactions is *publicly* available and verifiable by anyone. Instead, the information between ReClothes Dealer and Recycler(s) is *confidential*. (i.e., visible and verifiable only by the participants who took part in the interaction). 
 
-Your environment will have everything you need to build a modern Ethereum dApp frontend:
+## Frontend
+A simple and easy to use multi-page application in [ReactJS](https://reactjs.org/) designed for the ReClothes Customers. This is similar in many ways to a “traditional” dApp. It makes asynchronous calls to the blockchain node with a [Web3 provider](https://docs.metamask.io/guide/ethereum-provider.html), using [MetaMask](https://metamask.io/) for sending transactions. The application uses [Drizzle](https://www.trufflesuite.com/docs/drizzle/overview) for keeping the contract data, including state, events, and transactions in sync, taking advantage of the features of the [Redux store](https://redux.js.org/api/store/) on which Drizzle is based.
 
-* The most famous Javascript library for building modern and reactive user interfaces. [[React](https://reactjs.org/)]
-* Drizzle is a collection of front-end libraries that make writing dApp user interfaces easier and more predictable. The core of Drizzle is based on a Redux store that takes care of synchronizing your contract data, transaction data and more. [[Drizzle](https://www.trufflesuite.com/drizzle)]
-* The world's most popular React UI framework. [[Material-UI](https://material-ui.com/)]
-* The world's most popular open source form library for React and React Native. [[Formik](https://formik.org/)]
-* Linters for statical analysis of your TypeScript code. [[ESLint](https://eslint.org/)]
-
-
-## Folder Structure
-```
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   └── robots.txt
-├── src
-│   ├── assets
-│       ├── contracts
-│           └── MyContract.json
-│       ├── fonts
-│       ├── icons
-│   ├── constants
-│       ├── environment.ts
-│       ├── options.ts
-│       └── theme.ts
-│   ├── core
-│       ├── pages
-│           ├── Main
-│               ├── components
-│                   └── Navbar.tsx
-│               └── Main.tsx
-│   ├── shared
-│       ├── components
-│           ├── CircularLoader.tsx
-│           ├── ETHAccount.tsx
-│           ├── ETHAddress.tsx
-│           ├── SimpleCacheCallMethod.tsx
-│           ├── SimpleCacheSendTx.tsx
-│           ├── SimpleSendTxForm.tsx
-│           └── TransitionsModal.tsx
-│       ├── utils
-│           ├── drizzle.ts
-│           └── metamask.ts
-│   ├── App.tsx
-│   ├── index.tsx
-│   └── Types.ts
-├── .eslintignore
-├── .eslintrc.json
-├── .gitignore
-├── tsconfig.json
-├── package.json
-├── README.md
-```
-The files inside each folder (e.g., SimpleCacheSendTx.tsx, theme.ts) are to be considered placeholders that must be modified with your application needs.
-
-* **`public`**: Boilerplate folder which contains the icon and starting `index.html` file which contains the entire application components under the root div element.
-* **`src`**: Contains the entire React application folders and files. The files contains respectively the bootstraping container component (`App.tsx`), the index where this component is rendered into the DOM (`index.tsx`) and, the custom types definition (`Types.ts`). The folders are listed below: 
-    * **`assets`**: A set of folders that mantain static information regarding your smart contract JSON artifacts obtained from compilation (`/contracts`), the custom icons (`/icons`) and fonts (`/fonts`) for your application. 
-    * **`constants`**: The constants folder contains the custom configuration files: 
-        * **`environment.ts`**: Describes which networks and entry point contracts you want for the application. 
-        * **`options.ts`**: Returns a JS object with the custom configuration for your Drizzle instance.
-        * **`theme.ts`**: Returns a custom theme configuration using Material-UI.
-    * **`core`**: The core set of the application custom components. Each folder describing a page contains the components used as containers for entire application pages (e.g., `Main.tsx`) and a list of components (`/components`) that are used inside specific pages (e.g., `NavBar`). 
-    * **`shared`**: A set of reusable components (`/components`) across different pages (e.g., `CircularLoader.tsx`) and utilities functionalities for Drizzle (`drizzle.ts`) and MetaMask (`metamask.ts`).
+So, everyone having a MetaMask wallet can register as a Customer (note: the interface guides even the most inexperienced user towards the onboarding with MetaMask). The interface allows a Customer to view the shop where he/she can buy second-hand or upcycled clothes, register the shipping of second-hand clothes boxes and view its clothing collection.
 
 ## Getting Started
 
@@ -106,40 +52,52 @@ The files inside each folder (e.g., SimpleCacheSendTx.tsx, theme.ts) are to be c
 You need to have the following installed:
 
 * [git](https://git-scm.com/downloads) >= *2.21.0*
-* [node](https://nodejs.org/en/download/) >= *10.15.3*
-* [npm](https://www.npmjs.com/get-npm) >= *6.14.8*
+* [node](https://nodejs.org/en/download/) >= *10.16.0*
+* [npm](https://www.npmjs.com/get-npm) >= *6.14.4*
 
-Please install [MetaMask](https://metamask.io/) extension in your favorite browser.
-
-### Initialization
+### Configuration
 Clone the repository and install the packages:
 
 ```bash
-git clone https://github.com/Innovation-Advisory-Links-Foundation/Ethereum-Frontend-Boilerplate.git
-cd Ethereum-Frontend-Boilerplate
+git clone https://github.com/Innovation-Advisory-Links-Foundation/ReClothes-Frontend.git
+cd ReClothes-Frontend
 npm install
 ```
 
-Configure the `src/constants/environment.ts` file:
+Clone the `ReClothes-Backend` repository and follow the `README.md` for bootstrap a local [Ganache](https://www.trufflesuite.com/ganache) development node or [Hyperledger Besu](https://besu.hyperledger.org/en/stable/) quickstart network.
+
+```bash
+git clone https://github.com/Innovation-Advisory-Links-Foundation/ReClothes-Backend.git
+```
+
+Make a copy of the `src/constants/environment.default.ts` and renamed it as `src/constants/environment.ts`. This file contains the necessary information for connecting to the blockchain network, both for local development (Ganache) or production-like (Hyperledger Besu) networks:
 
 ```TypeScript
 export default {
-    EP_ADDRESS_DEV: "YOUR-ENTRY-POINT-SC-DEV-ADDRESS",
-    EP_ADDRESS_NET: "YOUR-ENTRY-POINT-SC-NET-ADDRESS",
+    RECLOTHES_SHOP_ADDRESS_DEV: "YOUR-RECLOTHES-SHOP-DEV-ADDRESS-HERE",
+    RECLOTHES_SHOP_ADDRESS_PROD: "YOUR-RECLOTHES-SHOP-PROD-ADDRESS-HERE",
+    RESELLING_CREDIT_ADDRESS_DEV: "YOUR-RESELLING-CREDIT-DEV-ADDRESS-HERE",
+    RESELLING_CREDIT_ADDRESS_PROD: "YOUR-RESELLING-CREDIT-PROD-ADDRESS-HERE",
     WEB3_PROVIDER: new Web3(Web3.givenProvider),
-    NET_NETWORK_TYPE: "YOUR-NETWORK-TYPE",
-    NET_NETWORK_ID: YOUR-CHAIN-ID,
+    PROD_NETWORK_TYPE: "besu",
+    PROD_NETWORK_ID: 2018,
     DEV_NETWORK_TYPE: "private",
-    PUBLIC_NET_MODE: false
+    PROD_NET_MODE: false
 }
 ```
 
-* The `EP_ADDRESS_DEV` and `EP_ADDRESS_NET` values must contain, respectively, the addresses for local (private) and public test network development of your entry point smart contract. 
+* The `RECLOTHES_SHOP_ADDRESS_DEV` and `RECLOTHES_SHOP_ADDRESS_PROD` values must contain, respectively, the addresses for Ganache (local) and Hyperledger Besu network development of your ReclothesShop smart contract deployed instance. 
+* The `RESELLING_CREDIT_ADDRESS_DEV` and `RESELLING_CREDIT_ADDRESS_PROD` values must contain, respectively, the addresses for Ganache (local) and Hyperledger Besu network development of your ResellingCredit smart contract deployed instance.
 * The `WEB3_PROVIDER` is the instance of Web3 library injected by MetaMask in your browser. 
-* The `NET_NETWORK_TYPE` and `NET_NETWORK_ID` are the public network type/name (e.g., ropsten, goerli, rinkeby, ...) and the correspondent chain id (e.g., ropsten chain id -> 3). 
-* The `DEV_NETWORK_TYPE` and `PUBLIC_NET_MODE` are constants and must not be changed.
+* The `PROD_NETWORK_TYPE` and `PROD_NETWORK_ID` are the "production" network type/name (for Hyperledger Besu networks, the value is `besu`) and the correspondent chain id (for besu, the chain id is `2018`). 
+* The `DEV_NETWORK_TYPE` indicates the network type/name for local development (for Ganache networks, the value is `private`).
+* The `PROD_NET_MODE` is a boolean flag which must be set to `true` when using Hyperledger Besu, otherwise `false`.
 
-To start your application.
+(nb. The present `src/constants/environment.ts` file contains the addresses of the smart contracts released following the back-end README instructions. There should be no changes if no adjustments are made to the released default configurations.)
+
+### Usage
+
+To start the ReactJS application.
 
 ```bash
 npm start
@@ -151,9 +109,73 @@ Run ESLint to check the syntax and style of your TypeScript code.
 npm run lint
 ```
 
-To interact with your application locally you need to import your Ganache accounts into MetaMask and select on MetaMask a custom network where your Ganache node is running (You can find more [here](https://docs.metamask.io/guide/getting-started.html#basic-considerations)).
+## Screenshoots
 
-To interact with your application remotely you need to import your public network account and select the network on MetaMask (nb. You will need to refill your accounts with Ether. For test network you can use faucet, like [this one](https://faucet.ropsten.be/) for Ropsten).
+### MetaMask Onboarding
+
+<div align="center">
+    <img 
+        align="center" 
+        src="./resources/metamaskOnboarding.png" 
+        alt="MetaMask Onboarding"
+    />
+    </div>
+<p align="center"> <i>Figure 2.</i> Page for guiding the user to onboard with MetaMask </p>
+
+### Shop Page for a User
+
+<div align="center">
+    <img 
+        align="center" 
+        src="./resources/shopUser.png" 
+        alt="Shop page for a non-customer user"
+    />
+    </div>
+<p align="center"> <i>Figure 3.</i> Shop page for a non-customer user </p>
+
+#### Shop Page for a Customer
+
+<div align="center">
+    <img 
+        align="center" 
+        src="./resources/shopCustomer.png" 
+        alt="Shop page for a customer"
+    />
+    </div>
+<p align="center"> <i>Figure 4.</i> Shop page for a customer </p>
+
+### Boxes Page for a Customer
+
+<div align="center">
+    <img 
+        align="center" 
+        src="./resources/boxes.png" 
+        alt="Boxes page"
+    />
+    </div>
+<p align="center"> <i>Figure 5.</i> Boxes page for a customer </p>
+
+### Send Box Form
+
+<div align="center">
+    <img 
+        align="center" 
+        src="./resources/sendBoxForm.png" 
+        alt="Send box form"
+    />
+    </div>
+<p align="center"> <i>Figure 6.</i> Form for sending a new box of second-hand clothes </p>
+
+### Collection Page for a Customer
+
+<div align="center">
+    <img 
+        align="center" 
+        src="./resources/collection.png" 
+        alt="Collection"
+    />
+    </div>
+<p align="center"> <i>Figure 7.</i> Collection page for a customer </p>
 
 ##  Development Rules
 
