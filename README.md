@@ -1,4 +1,4 @@
-# ReClothes
+# <img src="/resources/logo.png" alt="ReClothesLogo">
 
 **A decentralized solution for second-hand clothes recycles in the fashion industry.**
 
