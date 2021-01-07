@@ -14,7 +14,7 @@ import NetworkInfo from "../../shared/components/NetworkInfo"
 import ShopIcon from "@material-ui/icons/Shop"
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank"
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket"
-import ReClothesLogo from "../../assets/icons/ReClothesLogo.png"
+import ReClothesLogo from "../../assets/icons/ReClothesLogoW.png"
 
 type Props = {
     handleMetaMaskButtonConnection: () => void, // Callback for handling MetaMask account association with this React app.
@@ -98,7 +98,7 @@ function Navbar ({ handleMetaMaskButtonConnection, isAppEnabled, isNetworkCorrec
                         }
                         {(isAppEnabled) &&
                             <Typography variant="h6" color="inherit" noWrap className={classes.title}>
-                                <img src={ReClothesLogo} alt="ReClothes Logo" style={{ width: "196px" }}/>
+                                <img src={ReClothesLogo} alt="ReClothes Logo" style={{ width: "256px" }}/>
                             </Typography>
                         }
                         {/* Button for associating the MetaMask account with the React app. */}
