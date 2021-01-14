@@ -1,4 +1,4 @@
-# <img src="/resources/logo.png" alt="ReClothesLogo">
+# <img src="/resources/logo.png" alt="ReClothesLogo" width="400px">
 
 **A decentralized solution for second-hand clothes recycles in the fashion industry.**
 
@@ -7,7 +7,7 @@
 * Encourages individuals' participation in the circular economy through a *double-incentive* using two [ERC20](https://docs.openzeppelin.com/contracts/erc20) token implementations, automating payments and rewarding mechanisms.
 * Provides a *public* interface for people who wants to support the eco-friendly fashion industry by sending second-hand clothes and/or buying upcycled clothes.
 
-You can learn more about the main challenges of the fashion sector and our solution's design to the article on our [OverTheBlock Medium](https://medium.com/overtheblock/reclothes-a-blockchain-based-solution-for-second-hand-clothes-market-ca2061080e3c) page.
+You can learn more about the main challenges of the fashion sector and our solution's design to the article on our [OverTheBlock Medium](https://medium.com/overtheblock/reclothes-a-decentralized-solution-for-second-hand-clothes-recycles-in-the-fashion-industry-ca2061080e3c) page.
 
 
 ## Table of Contents
@@ -28,7 +28,7 @@ You can learn more about the main challenges of the fashion sector and our solut
 <div align="center">
     <img 
         align="center" 
-        src="./resources/workflow.svg" 
+        src="./resources/workflow.jpg" 
         alt="An high-level representation of ReClothes solution workflow"
     />
     </div>
